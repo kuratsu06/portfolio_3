@@ -8,6 +8,7 @@ class CompletesController < ApplicationController
 
   # GET /completes/1 or /completes/1.json
   def show
+    @like = Like.new
   end
 
   # GET /completes/new

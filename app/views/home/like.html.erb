@@ -1,0 +1,7 @@
+<% @likes.each do |like| %>
+  <% if like.complete.image? %>
+    <%= image_tag like.complete.image.url %>
+  <% else %>
+    <p>no image</p>
+  <% end %>
+<% end %>

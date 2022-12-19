@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_074853) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_080124) do
   create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
@@ -31,6 +31,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_074853) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_completes_on_post_id"
     t.index ["user_id"], name: "index_completes_on_user_id"
+  end
+
+  create_table "likes", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "complete_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["complete_id"], name: "index_likes_on_complete_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", charset: "utf8mb3", force: :cascade do |t|
@@ -63,6 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_074853) do
   add_foreign_key "categories", "users"
   add_foreign_key "completes", "posts"
   add_foreign_key "completes", "users"
+  add_foreign_key "likes", "completes"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
 end

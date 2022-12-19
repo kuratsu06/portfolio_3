@@ -5,12 +5,15 @@ Rails.application.routes.draw do
   # root "articles#index"
   scope :portfolio_3 do
     root 'home#top'
+    get '/like', to: 'home#like'
     devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions',
     }
     resources :categories
     resources :posts
-    resources :completes
+    resources :completes do
+      resource :likes, only: [:create, :destroy]
+    end
   end
 end
