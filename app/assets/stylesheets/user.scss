@@ -1,0 +1,52 @@
+.user {
+  width: 30%;
+  height: max-content;
+  padding: 30px;
+  margin: auto;
+  text-align: center;
+}
+
+.user h3 {
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+}
+
+.field {
+  margin: 20px auto;
+}
+
+.user .field img {
+  padding: 2px;
+  margin: 10px 20px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+.file_field {
+  width: auto;
+  margin: 10px auto;
+}
+
+.actions {
+  margin: 30px auto 10px auto;
+}
+
+.field input {
+  width: 75%;
+  padding-left: 8px;
+}
+
+.actions input,
+.user button {
+  width: 75%;
+  color: #fff;
+  font-weight: bold;
+  background-color: #00bfff;
+  border: 1px solid #00bfff;
+  border-radius: 3px;
+}
+
+.user button {
+  margin-bottom: 10px;
+}
