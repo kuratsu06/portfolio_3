@@ -1,0 +1,41 @@
+<div id="<%= dom_id complete %>">
+  <p>
+    <strong>User:</strong>
+    <%= complete.user_id %>
+  </p>
+
+  <p>
+    <strong>Post:</strong>
+    <%= complete.post_id %>
+  </p>
+
+  <p>
+    <strong>Done:</strong>
+    <%= complete.done %>
+  </p>
+
+  <p>
+    <strong>Memo:</strong>
+    <%= complete.memo %>
+  </p>
+
+  <p>
+    <strong>Image:</strong>
+    <% if complete.image? %>
+      <%= image_tag complete.image.url %>
+    <% else %>
+      <p>no image</p>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Again:</strong>
+    <%= complete.again %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= complete.status %>
+  </p>
+
+</div>

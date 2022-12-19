@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Completes</h1>
+
+<div id="completes">
+  <% @completes.each do |complete| %>
+    <%= render complete %>
+    <p>
+      <%= link_to "Show this complete", complete %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New complete", new_complete_path %>

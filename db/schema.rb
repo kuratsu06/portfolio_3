@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_19_073345) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_19_074853) do
   create_table "categories", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name", null: false
@@ -19,13 +19,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_073345) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
+  create_table "completes", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.date "done", null: false
+    t.text "memo"
+    t.string "image"
+    t.integer "again", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_completes_on_post_id"
+    t.index ["user_id"], name: "index_completes_on_user_id"
+  end
+
   create_table "posts", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.string "title", null: false
     t.text "memo"
     t.string "image"
-    t.boolean "status", default: false, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_posts_on_category_id"
@@ -47,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_19_073345) do
   end
 
   add_foreign_key "categories", "users"
+  add_foreign_key "completes", "posts"
+  add_foreign_key "completes", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
 end

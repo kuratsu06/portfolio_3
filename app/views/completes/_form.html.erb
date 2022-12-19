@@ -1,0 +1,62 @@
+<%= form_with(model: complete) do |form| %>
+  <% if complete.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(complete.errors.count, "error") %> prohibited this complete from being saved:</h2>
+
+      <ul>
+        <% complete.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div>
+    <%= form.label :post_id, style: "display: block" %>
+    <%= form.select :post_id, Post.all.map{ |post| [post.title, post.id] }, include_blank: "選択して下さい" %>
+  </div>
+
+  <div>
+    <%= form.label :done, style: "display: block" %>
+    <%= form.date_field :done %>
+  </div>
+
+  <div>
+    <%= form.label :memo, style: "display: block" %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div>
+    <div>
+      <%= form.label :again, "満足した", style: "display: block" %>
+      <%= form.radio_button :again, :enough %>
+    </div>
+    <div>
+      <%= form.label :again, "もう一度", style: "display: block" %>
+      <%= form.radio_button :again, :again %>
+    <div>
+  </div>
+
+
+  <div>
+    <div>
+      <%= form.label :status, "公開", style: "display: block" %>
+      <%= form.radio_button :status, :public %>
+    </div>
+    <div>
+      <%= form.label :status, "非公開", style: "display: block" %>
+      <%= form.radio_button :status, :private %>
+    <div>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

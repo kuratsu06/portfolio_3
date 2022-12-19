@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @complete %>
+
+<div>
+  <%= link_to "Edit this complete", edit_complete_path(@complete) %> |
+  <%= link_to "Back to completes", completes_path %>
+
+  <%= button_to "Destroy this complete", @complete, method: :delete %>
+</div>
