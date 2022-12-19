@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     resources :completes do
       resource :likes, only: [:create, :destroy]
     end
+    resources :comments
   end
 end
