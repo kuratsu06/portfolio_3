@@ -10,5 +10,6 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
     }
     resources :categories
+    resources :posts
   end
 end

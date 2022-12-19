@@ -1,0 +1,36 @@
+<div id="<%= dom_id post %>">
+  <p>
+    <strong>User:</strong>
+    <%= post.user_id %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= post.category_id %>
+  </p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= post.title %>
+  </p>
+
+  <p>
+    <strong>Memo:</strong>
+    <%= post.memo %>
+  </p>
+
+  <p>
+    <strong>Image:</strong>
+    <% if post.image? %>
+      <%= image_tag post.image.url %>
+    <% else %>
+      <p>no image</p>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= post.status %>
+  </p>
+
+</div>

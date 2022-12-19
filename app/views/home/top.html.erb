@@ -1,0 +1,7 @@
+<% @posts.each do |post| %>
+  <% if post.image? %>
+    <%= image_tag post.image.url %>
+  <% else %>
+    <p>no image</p>
+  <% end %>
+<% end %>

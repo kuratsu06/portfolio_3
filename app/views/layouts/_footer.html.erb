@@ -1,7 +1,11 @@
 <div class="footer">
-  <%= image_tag "home.png", size: '50x50' %>
+  <%= link_to root_path do %>
+    <%= image_tag "home.png", size: '50x50' %>
+  <% end %>
   <%= image_tag "search.png", size: '50x50' %>
-  <%= image_tag "write.png", size: '50x50' %>
+  <%= link_to new_post_path do %>
+    <%= image_tag "write.png", size: '50x50' %>
+  <% end %>
   <%= image_tag "list.png", size: '46x46' %>
   <%= image_tag "like.png", size: '50x50' %>
 </div>
