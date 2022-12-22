@@ -6,15 +6,16 @@ Rails.application.routes.draw do
   scope :portfolio_3 do
     root 'home#top'
     get '/like', to: 'home#like'
+    get '/list', to: 'home#list'
     devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions',
     }
-    resources :categories
+    resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :posts
     resources :completes do
       resource :likes, only: [:create, :destroy]
     end
-    resources :comments
+    resource :comments, only: [:create, :destroy]
   end
 end

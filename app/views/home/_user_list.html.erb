@@ -1,0 +1,25 @@
+<div>
+  <div class="plofile">
+    <div class="plofile_img">
+      <% if current_user.image? %>
+        <%= image_tag current_user.image.url, size: '150x150' %>
+      <% else %>
+        <%= image_tag "user.png", size: '150x150' %>
+      <% end %>
+    </div>
+    <div class="plofile">
+      <div class="plofile_count">
+        <p>カテゴリ数</p><br/>
+        <%= @categories_count %>
+      </div>
+      <div class="plofile_count">
+        <p>投稿数</p><br/>
+        <%= @posts_count %>
+      </div>
+      <div class="plofile_count">
+        <p>達成したリストの数</p><br/>
+        <%= @completes_count %>
+      </div>
+    </div>
+  </div>
+<div>

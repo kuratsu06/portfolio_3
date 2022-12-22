@@ -1,14 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class="category">
+  <p style="color: green"><%= notice %></p>
 
-<h1>Categories</h1>
+  <h3>マイカテゴリ</h3>
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
+  <div id="categories">
+    <% @categories.each do |category| %>
+      <%= link_to edit_category_path(category) do %>
+        <%= render category %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New category", new_category_path %>

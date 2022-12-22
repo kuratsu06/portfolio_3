@@ -12,48 +12,58 @@
   <% end %>
 
   <%= form.hidden_field :user_id, value: current_user.id %>
-
-  <div>
-    <%= form.label :post_id, style: "display: block" %>
-    <%= form.select :post_id, Post.all.map{ |post| [post.title, post.id] }, include_blank: "選択して下さい" %>
+  
+  <div class="form">
+    <p>リスト名</p>
+    <%= @post.title %>
   </div>
+  <div class="form">
+    <p>リストメモ</p>
+    <%= @post.memo %>
+  </div>
+  <%= form.hidden_field :post_id, value: @post.id %>
 
-  <div>
-    <%= form.label :done, style: "display: block" %>
+  <div class="form">
+    <%= form.label :done, "達成した日", style: "display: block" %>
     <%= form.date_field :done %>
   </div>
 
-  <div>
-    <%= form.label :memo, style: "display: block" %>
+  <div class="form">
+    <%= form.label :memo, "メモ", style: "display: block" %>
     <%= form.text_area :memo %>
   </div>
 
-  <div>
-    <%= form.label :image, style: "display: block" %>
+  <% if (controller.action_name == 'edit') %>
+    <%= image_tag complete.image.url %>
+  <% end %>
+
+  <div class="form">
+    <%= form.label :image, "画像", style: "display: block" %>
     <%= form.file_field :image %>
   </div>
 
-  <div>
-    <div>
-      <%= form.label :again, "満足した", style: "display: block" %>
+  <div class="again_form">
+    <div class="radio_button">
       <%= form.radio_button :again, :enough %>
+      <%= form.label :again, "満足した", style: "display: block" %>
     </div>
-    <div>
-      <%= form.label :again, "もう一度", style: "display: block" %>
+    <div class="radio_button">
       <%= form.radio_button :again, :again %>
-    <div>
+      <%= form.label :again, "もう一度", style: "display: block" %>
+    </div>
   </div>
 
-
-  <div>
-    <div>
-      <%= form.label :status, "公開", style: "display: block" %>
+  <div class="status_form">
+    <div class="radio_button">
       <%= form.radio_button :status, :public %>
+      <%= form.label :status, "公開", style: "display: block" %>
     </div>
-    <div>
-      <%= form.label :status, "非公開", style: "display: block" %>
+    <p>すべての人に表示されます</p>
+    <div class="radio_button">
       <%= form.radio_button :status, :private %>
-    <div>
+      <%= form.label :status, "非公開", style: "display: block" %>
+    </div>
+    <p>あなたにだけ表示されます</p>
   </div>
 
   <div>

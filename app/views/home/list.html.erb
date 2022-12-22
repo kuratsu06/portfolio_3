@@ -1,0 +1,271 @@
+<%= render 'home/user_list' %>
+<div class="list">
+  <div class="list_category">
+    <h3>カテゴリ一覧</h3>
+    <details>
+      <summary><h4>▼ 選択してください</h4></summary>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>編集</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.each do |category| %>
+            <tr>
+              <td>
+                <%= link_to posts_path(category_id: category.id) do %>
+                  <% category.name %>
+                <% end %>
+              </td>
+              <td class="list_btn"><%= link_to '■', edit_category_path(category) %></td>
+              <td class="list_btn"><%= link_to '■', category, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </details>
+  </div>
+    
+  <div class="list_post">
+    <h3>未達成リスト</h3>
+    <details>
+      <summary><h4>▼【公開中】</h4></summary>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>メモ</th>
+            <th>編集</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @post.status == 'public' && @posts.count > 0 %>
+            <% @posts.each do |post| %>
+              <% if post.status == 'public' %>
+                <tr>
+                  <td>
+                    <% if post.image? %>
+                      <%= image_tag post.image.url, size: '100x100' %>
+                    <% else %>
+                      <p class="list_no_img">no image</p>
+                    <% end %>
+                  </td>
+                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td><%= link_to post.memo, post_path(post) %></td>
+                  <td class="list_btn"><%= link_to '■', edit_post_path(post) %></td>
+                  <td class="list_btn"><%= link_to '■', post, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td colspan="5">投稿記事はありません</td>
+          <% end %>
+        </tbody>
+      </table>
+    </details>
+
+    <details>
+      <summary><h4>▼【非公開】</h4></summary>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>タイトル</th>
+            <th>メモ</th>
+            <th>編集</th>
+            <th>削除</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @post.status == 'private' && @posts.count > 0 %>
+            <% @posts.each do |post| %>
+              <% if post.status == 'private' %>
+                <tr>
+                  <td>
+                    <% if post.image? %>
+                      <%= image_tag post.image.url, size: '100x100' %>
+                    <% else %>
+                      <p class="list_no_img">no image</p>
+                    <% end %>
+                  </td>
+                  <td><%= link_to post.title, post_path(post) %></td>
+                  <td><%= link_to post.memo, post_path(post) %></td>
+                  <td class="list_btn"><%= link_to '■', edit_post_path(post) %></td>
+                  <td class="list_btn"><%= link_to '■', post, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% else %>
+            <td colspan="5">投稿記事はありません</td>
+          <% end %>
+        </tbody>
+      </table>
+    </details>
+  </div>
+
+  <div class="list_complete">
+    <h3>達成済みリスト</h3>
+    <div class="list2">
+      <div class="list_comlete_left">
+        <details>
+          <summary><h4>▼【満足したもの】</h4></summary>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th>編集</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @complete.again == 'enough' && @completes.count > 0 %>
+                <% @completes.each do |complete| %>
+                  <% if complete.again == 'enough' %>
+                    <tr>
+                      <td>
+                        <% if complete.image? %>
+                          <%= image_tag complete.image.url, size: '100x100' %>
+                        <% else %>
+                          <p class="list_no_img">no image</p>
+                        <% end %>
+                      </td>
+                      <td><%= link_to complete.post.title, complete_path(complete) %></td>
+                      <td><%= link_to complete.post.memo, complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <td colspan="5">投稿記事はありません</td>
+              <% end %>
+            </tbody>
+          </table>
+        </details>
+
+        <details>
+          <summary><h4>▼【再挑戦するもの】</h4></summary>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th>編集</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @complete.again == 'again' && @completes.count > 0 %>
+                <% @completes.each do |complete| %>
+                  <% if complete.again == 'again' %>
+                    <tr>
+                      <td>
+                        <% if complete.image? %>
+                          <%= image_tag complete.image.url, size: '100x100' %>
+                        <% else %>
+                          <p class="list_no_img">no image</p>
+                        <% end %>
+                      </td>
+                      <td><%= link_to complete.post.title, complete_path(complete) %></td>
+                      <td><%= link_to complete.post.memo, complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <td colspan="5">投稿記事はありません</td>
+              <% end %>
+            </tbody>
+          </table>
+        </details>
+      </div>
+
+      <div class="list_complete_right">
+        <details>
+          <summary><h4>▼【公開中】</h4></summary>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th>編集</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @complete.status == 'public' && @completes.count > 0 %>
+                <% @completes.each do |complete| %>
+                  <% if complete.status == 'public' %>
+                    <tr>
+                      <td>
+                        <% if complete.image? %>
+                          <%= image_tag complete.image.url, size: '100x100' %>
+                        <% else %>
+                          <p class="list_no_img">no image</p>
+                        <% end %>
+                      </td>
+                      <td><%= link_to complete.post.title, complete_path(complete) %></td>
+                      <td><%= link_to complete.post.memo, complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <td colspan="5">投稿記事はありません</td>
+              <% end %>
+            </tbody>
+          </table>
+        </details>
+
+        <details>
+          <summary><h4>▼【非公開】</h4></summary>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>タイトル</th>
+                <th>メモ</th>
+                <th>編集</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if @complete.status == 'private' && @completes.count > 0 %>
+                <% @completes.each do |complete| %>
+                  <% if complete.status == 'private' %>
+                    <tr>
+                      <td>
+                        <% if complete.image? %>
+                          <%= image_tag complete.image.url, size: '100x100' %>
+                        <% else %>
+                          <p class="list_no_img">no image</p>
+                        <% end %>
+                      </td>
+                      <td><%= link_to complete.post.title, complete_path(complete) %></td>
+                      <td><%= link_to complete.post.memo, complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
+                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <td colspan="5">投稿記事はありません</td>
+              <% end %>
+            </tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+  </div>
+</div>

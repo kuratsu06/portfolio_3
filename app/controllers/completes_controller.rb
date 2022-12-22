@@ -1,23 +1,31 @@
 class CompletesController < ApplicationController
   before_action :set_complete, only: %i[ show edit update destroy ]
+  before_action :move_to_signed_in
 
   # GET /completes or /completes.json
   def index
-    @completes = Complete.all
+    @completes = Complete.where(user_id: current_user.id)
   end
 
   # GET /completes/1 or /completes/1.json
   def show
     @like = Like.new
+    @likes_count = Like.where(complete_id: @complete.id).count
+    @comment = Comment.new
+    @comments_count = Comment.where(complete_id: @complete.id).count
   end
 
   # GET /completes/new
   def new
+    @post = Post.find(params[:post_id])
+    @posts = Post.where(user_id: current_user.id)
     @complete = Complete.new
   end
 
   # GET /completes/1/edit
   def edit
+    @post = Post.find(params[:post_id])
+    @posts = Post.where(user_id: current_user.id)
   end
 
   # POST /completes or /completes.json
@@ -67,5 +75,11 @@ class CompletesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def complete_params
       params.require(:complete).permit(:user_id, :post_id, :done, :memo, :image, :again, :status)
+    end
+
+    def move_to_signed_in
+      unless user_signed_in?
+        redirect_to new_user_session_path
+      end
     end
 end

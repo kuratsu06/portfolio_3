@@ -1,41 +1,43 @@
-<div id="<%= dom_id complete %>">
-  <p>
-    <strong>User:</strong>
-    <%= complete.user_id %>
-  </p>
-
-  <p>
-    <strong>Post:</strong>
-    <%= complete.post_id %>
-  </p>
-
-  <p>
-    <strong>Done:</strong>
-    <%= complete.done %>
-  </p>
-
-  <p>
-    <strong>Memo:</strong>
-    <%= complete.memo %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
+<div class="article">
+  <div class="article_left">
     <% if complete.image? %>
-      <%= image_tag complete.image.url %>
+      <%= image_tag complete.image.url, size: '500x500' %>
     <% else %>
-      <p>no image</p>
+      <p class="post_no_img">no image</p>
     <% end %>
-  </p>
+  </div>
 
-  <p>
-    <strong>Again:</strong>
-    <%= complete.again %>
-  </p>
+  <div class="article_right">
+    <div id="<%= dom_id complete %>">
+      <p>
+        <strong>作成者</strong>
+        <p class="post_article"><%= complete.user.name %></p>
+      </p>
 
-  <p>
-    <strong>Status:</strong>
-    <%= complete.status %>
-  </p>
+      <p>
+        <strong>リストのタイトル</strong>
+        <p class="post_article"><%= complete.post.title %></p>
+      </p>
 
+      <p>
+        <strong>作成日</strong>
+        <p><%= complete.created_at.strftime("%Y年%m月%d日") %></p>
+        <strong>達成日</strong>
+        <p class="post_article"><%= complete.done.strftime("%Y年%m月%d日") %></p>
+      </p>
+
+      <p>
+        <strong>メモ</strong>
+        <p class="post_article"><%= complete.memo %></p>
+      </p>
+
+      <div class="post_btn">
+        <% if current_user.id == complete.user_id %>
+          <%= link_to "編集", edit_complete_path(@complete, post_id: @complete.post.id) %>
+          <%= button_to "削除", @complete, method: :delete %>
+        <% end %>
+        <%= link_to "達成済みリスト一覧に戻る", completes_path %>
+      </div>
+    </div>
+  </div>
 </div>

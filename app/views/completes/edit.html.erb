@@ -1,10 +1,12 @@
-<h1>Editing complete</h1>
+<div class="post">
+  <h3>内容を修正する</h3>
 
-<%= render "form", complete: @complete %>
+  <%= render "form", complete: @complete %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this complete", @complete %> |
-  <%= link_to "Back to completes", completes_path %>
+  <div>
+    <%= link_to "戻る", @complete %> |
+    <%= link_to "達成したリスト一覧に戻る", completes_path %>
+  </div>
 </div>

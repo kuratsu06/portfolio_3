@@ -6,7 +6,9 @@
   <%= link_to new_post_path do %>
     <%= image_tag "write.png", size: '50x50' %>
   <% end %>
-  <%= image_tag "list.png", size: '46x46' %>
+  <%= link_to list_path do %>
+    <%= image_tag "list.png", size: '46x46' %>
+  <% end %>
   <%= link_to like_path do %>
     <%= image_tag "like.png", size: '50x50' %>
   <% end %>

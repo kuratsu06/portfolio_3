@@ -1,0 +1,98 @@
+.top_page {
+  margin: 30px 100px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.top_img {
+  background-color: #ddd;
+}
+
+.no_img {
+  height: 100%;
+  color: #bbb;
+  font-size: 40px;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 290px;
+}
+
+.plofile {
+  width: 60%;
+  font-size: 20px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+}
+
+.plofile_img img {
+  padding: 2px;
+  margin: 10px 20px;
+  border: 2px solid #000;
+  border-radius: 50%;
+}
+
+.plofile_count {
+  margin-left: 30px;
+}
+
+.list,
+.list2 {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.list h3 {
+  color: #fff;
+  background-color: #ccc;
+  padding: 10px;
+  margin: auto;
+}
+
+.list_category {
+  width: 15%;
+}
+
+.list_post {
+  width: 35%;
+}
+
+.list_complete {
+  width: 50%;
+}
+
+.list_complete_left,
+.list_complete_right {
+  width: 50%;
+}
+
+.list_no_img {
+  height: 100%;
+  font-size: 20px;
+  text-align: center;
+  line-height: 90px;
+}
+
+.list table {
+  margin: auto;
+}
+
+.list th,
+.list td {
+  padding: 5px;
+  text-align: center;
+  border: 3px #aaa solid;
+}
+
+.list th {
+  background-color: #eee;
+}
+
+.list_btn {
+  font-size: 22px;
+}

@@ -13,37 +13,45 @@
 
   <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <div>
-    <%= form.label :category_id, style: "display: block" %>
-    <%= form.select :category_id, Category.all.map{ |category| [category.name, category.id] }, include_blank: "選択して下さい" %>
+  <div class="form">
+    <%= form.label :category_id, "カテゴリ", style: "display: block" %>
+    <%= link_to "カテゴリを作成する", new_category_path %>
+    <%= form.collection_select(:category_id, @categories, :id, :name, prompt: "選択してください") %>
   </div>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
+  <div class="form">
+    <%= form.label :title, "タイトル", style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
-    <%= form.label :memo, style: "display: block" %>
+  <div class="form">
+    <%= form.label :memo, "メモ", style: "display: block" %>
     <%= form.text_area :memo, placeholder: "例）お店の名前
         東京都港区...
-        ○○ちゃんと○月○日に行く！" %>
+        ○○ちゃんと○月○日
+        に行く！" %>
   </div>
 
-  <div>
-    <%= form.label :image, style: "display: block" %>
+  <% if (controller.action_name == 'edit') %>
+      <%= image_tag post.image.url %>
+  <% end %>
+
+  <div class="form">
+    <%= form.label :image, "画像", style: "display: block" %>
     <%= form.file_field :image %>
   </div>
 
-  <div>
-    <div>
-      <%= form.label :status, "公開", style: "display: block" %>
+  <div class="status_form">
+    <div class="radio_button">
       <%= form.radio_button :status, :public %>
+      <%= form.label :status, "公開", style: "display: block" %>
     </div>
-    <div>
-      <%= form.label :status, "非公開", style: "display: block" %>
+    <p>すべての人に表示されます</p>
+    <div class="radio_button">
       <%= form.radio_button :status, :private %>
-    <div>
+      <%= form.label :status, "非公開", style: "display: block" %>
+    </div>
+    <p>あなたにだけ表示されます</p>
   </div>
 
   <div>

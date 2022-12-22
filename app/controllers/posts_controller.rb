@@ -1,9 +1,15 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :move_to_signed_in
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    if (params[:category_id])
+      category = Post.find(params[:category_id])
+      @posts = Post.where(user_id: current_user.id, category_id: category.id)
+    else
+      @posts = Post.where(user_id: current_user.id)
+    end
   end
 
   # GET /posts/1 or /posts/1.json
@@ -12,11 +18,13 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    @categories = Category.where(user_id: current_user.id)
     @post = Post.new
   end
 
   # GET /posts/1/edit
   def edit
+    @categories = Category.where(user_id: current_user.id)
   end
 
   # POST /posts or /posts.json
@@ -66,5 +74,11 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:user_id, :category_id, :title, :memo, :image, :status)
+    end
+
+    def move_to_signed_in
+      unless user_signed_in?
+        redirect_to new_user_session_path
+      end
     end
 end

@@ -2,19 +2,35 @@
 
 <%= render @complete %>
 
-<% if @complete.liked_by?(current_user) %>
-  <%= button_to complete_likes_path(@complete), method: :delete do %>
-    <span style="color:red;">❤︎</span>
-  <% end %>
-<% else %>
-  <%= button_to complete_likes_path(@complete), method: :post do %>
-    <span>♡</span>
-  <% end %>
-<% end %>
-
-<div>
-  <%= link_to "Edit this complete", edit_complete_path(@complete) %> |
-  <%= link_to "Back to completes", completes_path %>
-
-  <%= button_to "Destroy this complete", @complete, method: :delete %>
+<div class="like_btn">
+  <div>
+    <% if @complete.liked_by?(current_user) %>
+      <%= button_to complete_likes_path(@complete), method: :delete do %>
+        <%= image_tag "like2.png", size: '20x20' %><span class="count"><%= @likes_count %></span>
+      <% end %>
+    <% else %>
+      <%= button_to complete_likes_path(@complete), method: :post do %>
+        <%= image_tag "like.png", size: '20x20' %><span class="count"><%= @likes_count %></span>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="comment_img">
+    <%= image_tag "comment.png", size: '20x20' %><span class="count"><%= @comments_count %></span>
+  </div>
+  <div class="comment_form">
+    <%= form_with(model: @comment) do |form| %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.hidden_field :complete_id, value: @complete.id %>
+      <div class="comment_field">
+        <div>
+          <%= form.text_area :content %>
+        </div>
+        <div>
+          <%= form.submit "送信" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<%= render "completes/complete_comment" %>

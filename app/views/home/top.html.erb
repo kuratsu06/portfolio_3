@@ -1,7 +1,13 @@
-<% @posts.each do |post| %>
-  <% if post.image? %>
-    <%= image_tag post.image.url %>
-  <% else %>
-    <p>no image</p>
+<div class="top_page">
+  <% @all_posts.each do |all_post| %>
+    <div class="top_img">
+      <%= link_to post_path(all_post, post_id: @posts.ids, complete_id: @completes.ids) do %>
+        <% if all_post.image? %>
+          <%= image_tag all_post.image.url, size: '300x300' %>
+        <% else %>
+          <p class="no_img">no image</p>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>

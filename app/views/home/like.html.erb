@@ -1,7 +1,13 @@
-<% @likes.each do |like| %>
-  <% if like.complete.image? %>
-    <%= image_tag like.complete.image.url %>
-  <% else %>
-    <p>no image</p>
+<div class="top_page">
+  <% @likes.each do |like| %>
+    <div class="top_img">
+      <%= link_to complete_path(like.complete_id) do %>
+        <% if like.complete.image? %>
+          <%= image_tag like.complete.image.url, size: '300x300' %>
+        <% else %>
+          <p class="no_img">no image</p>
+        <% end %>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+</div>
