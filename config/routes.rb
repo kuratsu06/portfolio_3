@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     root 'home#top'
     get '/like', to: 'home#like'
     get '/list', to: 'home#list'
+    get '/search', to: 'home#search'
     devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions',

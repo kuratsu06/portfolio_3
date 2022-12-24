@@ -2,9 +2,10 @@ class HomeController < ApplicationController
   before_action :move_to_signed_in, only: %i[ like list ]
 
   def top
-    @posts = Post.status_public.order(created_at: :desc)
-    @completes = Complete.status_public.order(created_at: :desc)
-    @all_posts = @posts + @completes
+    @posts = Post.status_public
+    @completes = Complete.status_public
+    @mixed = @posts + @completes
+    @mixed.sort!{ |a, b| b.created_at <=> a.created_at }
   end
 
   def like
@@ -20,6 +21,13 @@ class HomeController < ApplicationController
     @completes = Complete.where(user_id: current_user.id)
     @complete = Complete.find_by(params[:complete_id])
     @completes_count = Complete.where(user_id: current_user.id).count
+  end
+
+  def search
+    @posts = Post.status_public.search(params[:search])
+    @completes = Complete.status_public.search(params[:search])
+    @mixed = @posts + @completes
+    @mixed.sort!{ |a, b| b.created_at <=> a.created_at }
   end
 
   private

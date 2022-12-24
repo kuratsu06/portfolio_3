@@ -13,4 +13,12 @@ class Complete < ApplicationRecord
   def liked_by?(user)
     likes.where(user_id: user).exists?
   end
+
+  def self.search(search)
+    if search
+      Complete.where(['memo LIKE ?', "%#{search}%"])
+    else
+      Complete.all
+    end
+  end
 end

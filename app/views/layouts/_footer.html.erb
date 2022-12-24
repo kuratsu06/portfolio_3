@@ -2,7 +2,9 @@
   <%= link_to root_path do %>
     <%= image_tag "home.png", size: '50x50' %>
   <% end %>
-  <%= image_tag "search.png", size: '50x50' %>
+  <%= link_to search_path do %>
+    <%= image_tag "search.png", size: '50x50' %>
+  <% end %>
   <%= link_to new_post_path do %>
     <%= image_tag "write.png", size: '50x50' %>
   <% end %>

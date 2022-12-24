@@ -11,8 +11,10 @@
       <div class="comment_content">
         <%= comment.user.name %><span class="content"><%= comment.content %></span>
         <p class="time_ago"><%= time_ago_in_words(comment.created_at)+ "前" %></p>
-        <% if current_user.id == comment.user_id %>
-          <%= button_to "削除", comments_path(id: comment.id), method: :delete %>
+        <% if user_signed_in? %>
+          <% if current_user.id == comment.user_id %>
+            <%= button_to "削除", comments_path(id: comment.id), method: :delete %>
+          <% end %>
         <% end %>
       </div>
     </div>
