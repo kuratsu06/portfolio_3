@@ -2,11 +2,6 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ edit update destroy ]
   before_action :move_to_signed_in
 
-  # GET /categories or /categories.json
-  def index
-    @categories = Category.where(user_id: current_user.id)
-  end
-
   # GET /categories/new
   def new
     @categories = Category.where(user_id: current_user.id)
@@ -24,11 +19,9 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to category_url(@category), notice: "Category was successfully created." }
-        format.json { render :"index", status: :created, location: @category }
+        format.html { redirect_to new_post_path, notice: "Category was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,11 +30,9 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to category_url(@category), notice: "Category was successfully updated." }
-        format.json { render :index, status: :ok, location: @category }
+        format.html { redirect_to new_post_path, notice: "Category was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -51,8 +42,7 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to list_path, notice: "Category was successfully destroyed." }
     end
   end
 

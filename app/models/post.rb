@@ -1,4 +1,10 @@
 class Post < ApplicationRecord
+  validates :user_id, presence: true
+  validates :category_id, presence: true
+  validates :title, presence: true, length: { in: 1..10 }
+  validates :memo, length: { in: 1..50 }
+  validates :status, presence: true
+  
   belongs_to :user
   belongs_to :category
 

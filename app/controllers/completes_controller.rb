@@ -24,7 +24,7 @@ class CompletesController < ApplicationController
 
   # GET /completes/1/edit
   def edit
-    @post = Post.find(params[:post_id])
+    @post = @complete.post
     @posts = Post.where(user_id: current_user.id)
   end
 
@@ -61,7 +61,7 @@ class CompletesController < ApplicationController
     @complete.destroy
 
     respond_to do |format|
-      format.html { redirect_to completes_url, notice: "Complete was successfully destroyed." }
+      format.html { redirect_to list_path, notice: "Complete was successfully destroyed." }
       format.json { head :no_content }
     end
   end

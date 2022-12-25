@@ -17,7 +17,7 @@
     <div class="field">
       <%= f.label :image, "プロフィール画像" %><br />
       <% if @user.image? %>
-        <%= image_tag @user.image.url, size: '48x48' %>
+        <%= image_tag @user.image.thumb.url %>
       <% else %>
         <%= image_tag "user.png", size: '48x48' %>
       <% end %>

@@ -1,4 +1,11 @@
 class Complete < ApplicationRecord
+  validates :user_id, presence: true
+  validates :post_id, presence: true
+  validates :done, presence: true
+  validates :memo, length: { in: 1..50 }
+  validates :again, presence: true
+  validates :status, presence: true
+
   belongs_to :user
   belongs_to :post
 

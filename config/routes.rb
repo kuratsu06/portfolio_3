@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       registrations: 'users/registrations',
       sessions: 'users/sessions',
     }
-    resources :categories, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :categories, only: [:new, :create, :edit, :update, :destroy]
     resources :posts
     resources :completes do
       resource :likes, only: [:create, :destroy]

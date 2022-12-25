@@ -33,7 +33,11 @@
   </div>
 
   <% if (controller.action_name == 'edit') %>
-      <%= image_tag post.image.url %>
+    <% if post.image? %>
+      <%= image_tag post.image.url, size: '100x100' %>
+    <% else %>
+      <p class="new_no_img">no image</p>
+    <% end %>
   <% end %>
 
   <div class="form">

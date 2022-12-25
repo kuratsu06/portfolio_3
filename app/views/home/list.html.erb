@@ -13,16 +13,20 @@
           </tr>
         </thead>
         <tbody>
-          <% @categories.each do |category| %>
-            <tr>
-              <td>
-                <%= link_to posts_path(category_id: category.id) do %>
-                  <% category.name %>
-                <% end %>
-              </td>
-              <td class="list_btn"><%= link_to '■', edit_category_path(category) %></td>
-              <td class="list_btn"><%= link_to '■', category, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-            </tr>
+          <% if @categories.count > 0 %>
+            <% @categories.each do |category| %>
+              <tr>
+                <td>
+                  <%= link_to posts_path(category_id: category.id) do %>
+                    <% category.name %>
+                  <% end %>
+                </td>
+                <td class="list_btn"><%= link_to '■', edit_category_path(category) %></td>
+                <td class="list_btn"><%= button_to '■', category, method: :delete %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <td colspan="3">投稿記事はありません</td>
           <% end %>
         </tbody>
       </table>
@@ -58,7 +62,7 @@
                   <td><%= link_to post.title, post_path(post) %></td>
                   <td><%= link_to post.memo, post_path(post) %></td>
                   <td class="list_btn"><%= link_to '■', edit_post_path(post) %></td>
-                  <td class="list_btn"><%= link_to '■', post, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                  <td class="list_btn"><%= button_to '■', post, method: :delete %></td>
                 </tr>
               <% end %>
             <% end %>
@@ -96,7 +100,7 @@
                   <td><%= link_to post.title, post_path(post) %></td>
                   <td><%= link_to post.memo, post_path(post) %></td>
                   <td class="list_btn"><%= link_to '■', edit_post_path(post) %></td>
-                  <td class="list_btn"><%= link_to '■', post, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                  <td class="list_btn"><%= button_to '■', post, method: :delete %></td>
                 </tr>
               <% end %>
             <% end %>
@@ -139,7 +143,7 @@
                       <td><%= link_to complete.post.title, complete_path(complete) %></td>
                       <td><%= link_to complete.post.memo, complete_path(complete) %></td>
                       <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
-                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                      <td class="list_btn"><%= button_to '■', complete, method: :delete %></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -177,7 +181,7 @@
                       <td><%= link_to complete.post.title, complete_path(complete) %></td>
                       <td><%= link_to complete.post.memo, complete_path(complete) %></td>
                       <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
-                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                      <td class="list_btn"><%= button_to '■', complete, method: :delete %></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -217,7 +221,7 @@
                       <td><%= link_to complete.post.title, complete_path(complete) %></td>
                       <td><%= link_to complete.post.memo, complete_path(complete) %></td>
                       <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
-                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                      <td class="list_btn"><%= button_to '■', complete, method: :delete %></td>
                     </tr>
                   <% end %>
                 <% end %>
@@ -255,7 +259,7 @@
                       <td><%= link_to complete.post.title, complete_path(complete) %></td>
                       <td><%= link_to complete.post.memo, complete_path(complete) %></td>
                       <td class="list_btn"><%= link_to '■', edit_complete_path(complete) %></td>
-                      <td class="list_btn"><%= link_to '■', complete, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+                      <td class="list_btn"><%= button_to '■', complete, method: :delete %></td>
                     </tr>
                   <% end %>
                 <% end %>

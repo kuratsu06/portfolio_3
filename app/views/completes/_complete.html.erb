@@ -37,9 +37,9 @@
             <%= link_to "編集", edit_complete_path(@complete, post_id: @complete.post.id) %>
             <%= button_to "削除", @complete, method: :delete %>
           <% end %>
-          <%= link_to "達成済みリスト一覧に戻る", completes_path %>
         <% end %>
       </div>
+      <%= link_to "達成済みリスト一覧に戻る", completes_path %>
     </div>
   </div>
 </div>

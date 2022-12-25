@@ -5,7 +5,7 @@
     <div class="top_img">
       <%= link_to complete_path(complete) do %>
         <% if complete.image? %>
-          <%= image_tag complete.image.url, size: '300x300' %>
+          <%= image_tag complete.image.thumb_2.url %>
         <% else %>
           <p class="no_img">no image</p>
         <% end %>

@@ -61,3 +61,9 @@ body {
   justify-content: space-between;
   background-color: #fff;
 }
+
+@media screen and (max-width: 480px) {
+  .footer {
+  padding: 30px 50px;
+  }
+}

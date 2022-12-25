@@ -3,7 +3,7 @@
     <div class="top_img">
       <%= link_to complete_path(like.complete_id) do %>
         <% if like.complete.image? %>
-          <%= image_tag like.complete.image.url, size: '300x300' %>
+          <%= image_tag like.complete.image.thumb_2.url %>
         <% else %>
           <p class="no_img">no image</p>
         <% end %>

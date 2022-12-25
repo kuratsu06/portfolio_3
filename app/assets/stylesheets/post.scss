@@ -48,6 +48,17 @@
   border-radius: 3px;
 }
 
+.new_no_img {
+  width: 100px;
+  height: 100px;
+  color: #bbb;
+  font-size: 16px;
+  margin: auto;
+  background-color: #ccc;
+  text-align: center;
+  line-height: 100px;
+}
+
 .article {
   width: 70%;
   margin: auto;
@@ -92,4 +103,47 @@
 
 .post_btn button {
   margin: 10px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .post {
+    width: 60%;
+  }
+
+  .article {
+    width: 80%;
+  }
+
+  .article_left {
+    margin: auto;
+  }
+
+  .article_left img {
+    width: 300px;
+    height: 300px;
+  }
+
+  .article_right {
+    margin: 30px 50px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .post {
+    width: 90%;
+  }
+
+  .article {
+    width: 70%;
+    display: block;
+  }
+
+  .article_left img {
+    width: 320px;
+    height: 320px;
+  }
+
+  .article_right {
+    margin: 30px auto;
+  }
 }

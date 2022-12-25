@@ -97,6 +97,12 @@
   font-size: 22px;
 }
 
+.list_btn button {
+  color: #337ab7;
+  background-color: #fff;
+  border: 1px #fff solid;
+}
+
 .search {
   text-align: center;
 }
@@ -110,4 +116,70 @@
 .search input[type="submit"] {
   height: 30px;
   font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .top_page {
+    margin: 30px 75px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .top_img img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .plofile {
+    width: 90%;
+  }
+
+  .list {
+    display: block;
+  }
+
+  .list_category,
+  .list_post,
+  .list_complete {
+    width: 100%;
+  }
+
+  .list table {
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .top_page {
+    margin: 30px 15px;
+    column-gap: 0;
+    row-gap: 0;
+  }
+
+  .top_img img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .plofile {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .plofile_img img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .list table {
+    margin-bottom: 20px;
+  }
+
+  .list2 {
+    display: block;
+  }
+  
+  .list_complete_left,
+  .list_complete_right {
+    width: 100%;
+  }
 }
