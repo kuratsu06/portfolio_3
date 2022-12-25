@@ -31,10 +31,11 @@ class CompletesController < ApplicationController
   # POST /completes or /completes.json
   def create
     @complete = Complete.new(complete_params)
+    @post = @complete.post
 
     respond_to do |format|
       if @complete.save
-        format.html { redirect_to complete_url(@complete), notice: "Complete was successfully created." }
+        format.html { redirect_to complete_url(@complete), notice: "リストを達成しました" }
         format.json { render :show, status: :created, location: @complete }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +48,7 @@ class CompletesController < ApplicationController
   def update
     respond_to do |format|
       if @complete.update(complete_params)
-        format.html { redirect_to complete_url(@complete), notice: "Complete was successfully updated." }
+        format.html { redirect_to complete_url(@complete), notice: "達成したリストを更新しました" }
         format.json { render :show, status: :ok, location: @complete }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -61,7 +62,7 @@ class CompletesController < ApplicationController
     @complete.destroy
 
     respond_to do |format|
-      format.html { redirect_to list_path, notice: "Complete was successfully destroyed." }
+      format.html { redirect_to list_path, notice: "達成したリストを削除しました" }
       format.json { head :no_content }
     end
   end

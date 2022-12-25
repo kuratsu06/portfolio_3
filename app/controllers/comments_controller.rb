@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to complete_path(@comment.complete_id), notice: "Comment was successfully created." }
+        format.html { redirect_to complete_path(@comment.complete_id), notice: "コメントを送信しました" }
         format.json { render complete_path(@complete), status: :created, location: @complete }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to complete_path(@comment.complete_id), notice: "Comment was successfully destroyed." }
+      format.html { redirect_to complete_path(@comment.complete_id), notice: "コメントを削除しました" }
       format.json { head :no_content }
     end
   end

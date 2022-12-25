@@ -1,6 +1,6 @@
 <%= form_with(model: complete) do |form| %>
   <% if complete.errors.any? %>
-    <div style="color: red">
+    <div class="alert">
       <h2><%= pluralize(complete.errors.count, "error") %> prohibited this complete from being saved:</h2>
 
       <ul>

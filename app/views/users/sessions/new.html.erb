@@ -1,6 +1,10 @@
 <div class="user">
   <h3>ログイン</h3>
 
+  <% if alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
       <%= f.label :email %><br />

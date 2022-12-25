@@ -62,6 +62,22 @@ body {
   background-color: #fff;
 }
 
+.notice {
+  width: 500px;
+  color: #008000;
+  font-size: 16px;
+  margin: auto;
+  background-color: #ccffcc;
+  text-align: center;
+}
+
+.alert {
+  color: #f00;
+  font-size: 16px;
+  background-color: #ffcccc;
+  text-align: center;
+}
+
 @media screen and (max-width: 480px) {
   .footer {
   padding: 30px 50px;
