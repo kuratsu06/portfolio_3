@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ edit update destroy ]
+  before_action :set_category, only: %i( edit update destroy )
   before_action :move_to_signed_in
 
   # GET /categories/new

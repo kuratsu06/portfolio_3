@@ -66,6 +66,11 @@ group :development, :test do
   gem 'rails-erd'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'rubocop'
+  gem 'rubocop-airbnb'
 end
 
 group :development do

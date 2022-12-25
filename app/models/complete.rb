@@ -17,7 +17,7 @@ class Complete < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   def liked_by?(user)
-    likes.where(user_id: user).exists?
+    likes.exists?(user_id: user)
   end
 
   def self.search(search)

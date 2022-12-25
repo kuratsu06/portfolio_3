@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-  before_action :move_to_signed_in, only: %i[ index new edit create update destroy ]
+  before_action :set_post, only: %i( show edit update destroy )
+  before_action :move_to_signed_in, only: %i( index new edit create update destroy )
 
   # GET /posts or /posts.json
   def index
