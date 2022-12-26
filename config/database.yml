@@ -52,6 +52,5 @@ test:
 #
 production:
   <<: *default
-  database: portfolio_3_production
-  username: portfolio_3
-  password: <%= ENV["PORTFOLIO_3_DATABASE_PASSWORD"] %>
+  url: <%= ENV['JAWSDB_URL']&.sub('mysql://', 'mysql2://') %>
+  

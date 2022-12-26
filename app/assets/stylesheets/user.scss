@@ -38,6 +38,7 @@
 }
 
 .actions input,
+.guest_btn,
 .user button {
   width: 75%;
   color: #fff;
@@ -49,6 +50,19 @@
 
 .user button {
   margin-bottom: 10px;
+}
+
+.guest_login {
+  margin-bottom: 10px;
+}
+
+.guest_login :hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.guest_btn {
+  padding: 3px 90px;
 }
 
 @media screen and (max-width: 768px) {

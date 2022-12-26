@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       registrations: 'users/registrations',
       sessions: 'users/sessions',
     }
+    devise_scope :user do
+      get 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    end
     resources :categories, only: [:new, :create, :edit, :update, :destroy]
     resources :posts
     resources :completes do
