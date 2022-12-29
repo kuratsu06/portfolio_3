@@ -22,12 +22,12 @@ RSpec.feature "completes", type: :feature do
       visit post_path(post)
       click_on "このリストを達成済みにする"
       expect(current_path).to eq new_complete_path
-      fill_in 'complete[done]', with: Time.zone.now.strftime('%Y-%m-%d')
+      fill_in 'complete[done]', with: Time.zone.today.strftime('%Y-%m-%d')
       fill_in 'complete[memo]', with: "MyText"
       choose 'complete[again]', with: "enough"
       choose 'complete[status]', with: "public"
       click_on "登録する"
-      expect(complete.reload.done).to eq Date.today
+      expect(complete.reload.done).to eq Time.zone.today
       expect(complete.reload.memo).to eq "MyText"
       expect(complete.reload.again).to eq "enough"
       expect(complete.reload.status).to eq "public"
@@ -43,12 +43,12 @@ RSpec.feature "completes", type: :feature do
       visit complete_path(complete)
       click_on "編集"
       expect(current_path).to eq edit_complete_path(complete)
-      fill_in 'complete[done]', with: Time.zone.now.strftime('%Y-%m-%d')
+      fill_in 'complete[done]', with: Time.zone.today.strftime('%Y-%m-%d')
       fill_in 'complete[memo]', with: "MyText"
       choose 'complete[again]', with: "enough"
       choose 'complete[status]', with: "public"
       click_on "更新する"
-      expect(complete.reload.done).to eq Date.today
+      expect(complete.reload.done).to eq Time.zone.today
       expect(complete.reload.memo).to eq "MyText"
       expect(complete.reload.again).to eq "enough"
       expect(complete.reload.status).to eq "public"
