@@ -58,6 +58,7 @@ gem 'devise-i18n-views'
 gem 'dotenv-rails'
 gem 'carrierwave'
 gem 'mini_magick'
+gem "aws-sdk-s3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
