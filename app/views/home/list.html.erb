@@ -49,7 +49,7 @@
           </tr>
         </thead>
         <tbody>
-          <% if @post.status == 'public' && @posts.count > 0 %>
+          <% if @posts.status_public.count > 0 %>
             <% @posts.each do |post| %>
               <% if post.status == 'public' %>
                 <tr>
@@ -87,7 +87,7 @@
           </tr>
         </thead>
         <tbody>
-          <% if @post.status == 'private' && @posts.count > 0 %>
+          <% if @posts.status_private.count > 0 %>
             <% @posts.each do |post| %>
               <% if post.status == 'private' %>
                 <tr>
@@ -130,7 +130,7 @@
               </tr>
             </thead>
             <tbody>
-              <% if @complete.again == 'enough' && @completes.count > 0 %>
+              <% if @completes.enough.count > 0 %>
                 <% @completes.each do |complete| %>
                   <% if complete.again == 'enough' %>
                     <tr>
@@ -168,7 +168,7 @@
               </tr>
             </thead>
             <tbody>
-              <% if @complete.again == 'again' && @completes.count > 0 %>
+              <% if @completes.again.count > 0 %>
                 <% @completes.each do |complete| %>
                   <% if complete.again == 'again' %>
                     <tr>
@@ -208,7 +208,7 @@
               </tr>
             </thead>
             <tbody>
-              <% if @complete.status == 'public' && @completes.count > 0 %>
+              <% if @completes.status_public.count > 0 %>
                 <% @completes.each do |complete| %>
                   <% if complete.status == 'public' %>
                     <tr>
@@ -246,7 +246,7 @@
               </tr>
             </thead>
             <tbody>
-              <% if @complete.status == 'private' && @completes.count > 0 %>
+              <% if @completes.status_private.count > 0 %>
                 <% @completes.each do |complete| %>
                   <% if complete.status == 'private' %>
                     <tr>
