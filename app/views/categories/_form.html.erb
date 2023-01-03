@@ -18,18 +18,20 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="form">
-    <p>作成済みカテゴリ</p>
-    <ul>
-      <% @categories.each do |category| %>
-        <li>
-          <%= link_to edit_category_path(category) do %>
-            <%= category.name %>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+  <% if @categories.count > 0 %>
+    <div class="form">
+      <p>作成済みカテゴリ</p>
+      <ul>
+        <% @categories.each do |category| %>
+          <li>
+            <%= link_to edit_category_path(category) do %>
+              <%= category.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div>
     <%= form.submit %>

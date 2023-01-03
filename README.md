@@ -5,7 +5,7 @@
 目標の投稿と、達成した時の投稿の2種類あります。
 達成した投稿にはいいね！やコメントをすることができます。
 ## URL
-https://wantto.herokuapp.com/portfolio_3
+https://want-to.herokuapp.com/portfolio_3
 ## 利用方法
 <まずはカテゴリ>
 リストのグループを作ります。
