@@ -5,7 +5,7 @@
       <div class="top_img">
         <%= link_to post_path(mix) do %>
           <% if mix.image? %>
-            <%= image_tag mix.image.thumb_2.url %>
+            <%= image_tag mix.image.thumb_2.url, size: '300x300' %>
           <% else %>
             <p class="no_img">no image</p>
           <% end %>
@@ -15,7 +15,7 @@
       <div class="top_img">
         <%= link_to complete_path(mix) do %>
           <% if mix.image? %>
-            <%= image_tag mix.image.thumb_2.url %>
+            <%= image_tag mix.image.thumb_2.url, size: '300x300' %>
           <% else %>
             <p class="no_img">no image</p>
           <% end %>
