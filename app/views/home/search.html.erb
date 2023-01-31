@@ -1,0 +1,32 @@
+<div class="search">
+  <%= form_tag search_path, :method => 'get' do %>
+    <%= text_field_tag :search, params[:search], placeholder: "キーワードを入力" %>
+    <%= submit_tag '検索', :name => nil %>
+  <% end %>
+</div>
+
+<div class="top_page">
+  <% @mixed.each do |mix| %>
+    <% if mix.kind_of?(Post) %>
+      <div class="top_img">
+        <%= link_to post_path(mix) do %>
+          <% if mix.image? %>
+            <%= image_tag mix.image.thumb_2.url %>
+          <% else %>
+            <p class="no_img">no image</p>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="top_img">
+        <%= link_to complete_path(mix) do %>
+          <% if mix.image? %>
+            <%= image_tag mix.image.thumb_2.url %>
+          <% else %>
+            <p class="no_img">no image</p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

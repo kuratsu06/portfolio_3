@@ -1,0 +1,76 @@
+<%= form_with(model: complete) do |form| %>
+  <% if complete.errors.any? %>
+    <div class="alert">
+      <h2><%= pluralize(complete.errors.count, "error") %> prohibited this complete from being saved:</h2>
+
+      <ul>
+        <% complete.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  
+  <div class="form">
+    <p>リスト名</p>
+    <%= @post.title %>
+  </div>
+  <div class="form">
+    <p>リストメモ</p>
+    <%= @post.memo %>
+  </div>
+  <%= form.hidden_field :post_id, value: @post.id %>
+
+  <div class="form">
+    <%= form.label :done, "達成した日", style: "display: block" %>
+    <%= form.date_field :done %>
+  </div>
+
+  <div class="form">
+    <%= form.label :memo, "メモ", style: "display: block" %>
+    <%= form.text_area :memo %>
+  </div>
+
+  <% if (controller.action_name == 'edit') %>
+    <% if complete.image? %>
+      <%= image_tag complete.image.url, size: '100x100' %>
+    <% else %>
+      <p class="new_no_img">no image</p>
+    <% end %>
+  <% end %>
+
+  <div class="form">
+    <%= form.label :image, "画像", style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="again_form">
+    <div class="radio_button">
+      <%= form.radio_button :again, :enough %>
+      <%= form.label :again, "満足した", style: "display: block" %>
+    </div>
+    <div class="radio_button">
+      <%= form.radio_button :again, :again %>
+      <%= form.label :again, "もう一度", style: "display: block" %>
+    </div>
+  </div>
+
+  <div class="status_form">
+    <div class="radio_button">
+      <%= form.radio_button :status, :public %>
+      <%= form.label :status, "公開", style: "display: block" %>
+    </div>
+    <p>すべての人に表示されます</p>
+    <div class="radio_button">
+      <%= form.radio_button :status, :private %>
+      <%= form.label :status, "非公開", style: "display: block" %>
+    </div>
+    <p>あなたにだけ表示されます</p>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

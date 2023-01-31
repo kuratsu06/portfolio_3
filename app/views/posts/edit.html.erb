@@ -1,0 +1,12 @@
+<div class="post">
+  <h3>内容を修正する</h3>
+
+  <%= render "form", post: @post %>
+
+  <br>
+
+  <div>
+    <%= link_to "戻る", @post %> |
+    <%= link_to "投稿一覧に戻る", posts_path %>
+  </div>
+</div>

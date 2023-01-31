@@ -1,0 +1,64 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div class="alert">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <div class="form">
+    <%= form.label :category_id, "カテゴリ", style: "display: block" %>
+    <%= link_to "カテゴリを作成する", new_category_path %>
+    <%= form.collection_select(:category_id, @categories, :id, :name, prompt: "選択してください") %>
+  </div>
+
+  <div class="form">
+    <%= form.label :title, "タイトル", style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="form">
+    <%= form.label :memo, "メモ", style: "display: block" %>
+    <%= form.text_area :memo, placeholder: "例）お店の名前
+        東京都港区...
+        ○○ちゃんと○月○日
+        に行く！" %>
+  </div>
+
+  <% if (controller.action_name == 'edit') %>
+    <% if post.image? %>
+      <%= image_tag post.image.url, size: '100x100' %>
+    <% else %>
+      <p class="new_no_img">no image</p>
+    <% end %>
+  <% end %>
+
+  <div class="form">
+    <%= form.label :image, "画像", style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="status_form">
+    <div class="radio_button">
+      <%= form.radio_button :status, :public %>
+      <%= form.label :status, "公開", style: "display: block" %>
+    </div>
+    <p>すべての人に表示されます</p>
+    <div class="radio_button">
+      <%= form.radio_button :status, :private %>
+      <%= form.label :status, "非公開", style: "display: block" %>
+    </div>
+    <p>あなたにだけ表示されます</p>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

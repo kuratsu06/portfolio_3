@@ -1,0 +1,44 @@
+<div class="article">
+  <div class="article_left">
+    <% if post.image? %>
+      <%= image_tag post.image.url, size: '500x500' %>
+    <% else %>
+      <p class="post_no_img">no image</p>
+    <% end %>
+  </div>
+
+  <div class="article_right">
+    <div id="<%= dom_id post %>">
+      <p>
+        <strong>作成者</strong>
+        <p class="post_article"><%= post.user.name %></p>
+      </p>
+
+      <p>
+        <strong>カテゴリ</strong>
+        <p class="post_article"><%= post.category.name %></p>
+      </p>
+
+      <p>
+        <strong>タイトル</strong>
+        <p class="post_article"><%= post.title %></p>
+      </p>
+
+      <p>
+        <strong>メモ</strong>
+        <p class="post_article"><%= post.memo %></p>
+      </p>
+
+      <div class="post_btn">
+        <% if user_signed_in? %>
+          <% if current_user.id == post.user_id %>
+            <%= link_to "編集", edit_post_path(post) %>
+            <%= button_to "削除", post, method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      <%= link_to "一覧に戻る", posts_path %><span class="partition">|</span>
+      <%= link_to "このリストを達成済みにする", new_complete_path(post_id: post.id) %>
+    </div>
+  </div>
+</div>

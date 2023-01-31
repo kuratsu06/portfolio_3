@@ -1,0 +1,39 @@
+<%= form_with(model: category) do |form| %>
+  <% if category.errors.any? %>
+    <div class="alert">
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+  
+  <div class="form">
+    <%= form.label :name, "カテゴリ名", style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <% if @categories.count > 0 %>
+    <div class="form">
+      <p>作成済みカテゴリ</p>
+      <ul>
+        <% @categories.each do |category| %>
+          <li>
+            <%= link_to edit_category_path(category) do %>
+              <%= category.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

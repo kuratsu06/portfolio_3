@@ -1,0 +1,58 @@
+<div class="user">
+  <h3>アカウント編集</h3>
+
+  <% if alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :name, "ユーザー名" %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autocomplete: "email" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :image, "プロフィール画像" %><br />
+      <% if @user.image? %>
+        <%= image_tag @user.image.thumb.url %>
+      <% else %>
+        <%= image_tag "user.png", size: '48x48' %>
+      <% end %>
+      <%= f.file_field :image, class: "file_field" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password, "新しいパスワード(６文字以上)" %>
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "変更する場合のみ入力してください" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, "新しいパスワード再確認" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "変更する場合のみ入力してください" %>
+    </div> 
+
+    <div class="field">
+      <%= f.label :current_password, "【必須】現在使用しているパスワード" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "パスワードを入力してください" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "更新" %>
+    </div>
+  <% end %>
+
+  <h5>退会しますか？</h5>
+  <%= button_to "削除", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+  <%= link_to "戻る", :back %>
+</div>
